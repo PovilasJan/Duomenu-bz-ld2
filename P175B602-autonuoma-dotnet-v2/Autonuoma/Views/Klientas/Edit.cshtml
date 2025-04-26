@@ -44,12 +44,6 @@
 		</div>
 
 		<div class="form-group">
-			@Html.LabelFor(m => m.GimimoData)
-			@Html.TextBoxFor(m => m.GimimoData, "{0:yyyy-MM-dd}", new { @class = "date-picker" })
-			@Html.ValidationMessageFor(m => m.GimimoData, "")
-		</div>
-
-		<div class="form-group">
 			@Html.LabelFor(m => m.Telefonas)
 			@Html.EditorFor(m => m.Telefonas)
 			@Html.ValidationMessageFor(m => m.Telefonas, "")
@@ -59,6 +53,18 @@
 			@Html.LabelFor(m => m.Epastas)
 			@Html.EditorFor(m => m.Epastas)
 			@Html.ValidationMessageFor(m => m.Epastas, "")
+		</div>
+
+		<div class="form-group">
+			@Html.LabelFor(m => m.Amzius)
+			@Html.EditorFor(m => m.Amzius)
+			@Html.ValidationMessageFor(m => m.Amzius, "")
+		</div>
+
+		<div class="form-group">
+			@Html.LabelFor(m => m.Adresas)
+			@Html.EditorFor(m => m.Adresas)
+			@Html.ValidationMessageFor(m => m.Adresas, "")
 		</div>
 	</fieldset>
 

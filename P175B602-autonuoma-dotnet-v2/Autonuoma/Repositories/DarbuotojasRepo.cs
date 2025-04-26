@@ -2,95 +2,102 @@
 
 using Org.Ktu.Isk.P175B602.Autonuoma.Models;
 
-
 /// <summary>
 /// Database operations related to 'Darbuotojas' entity.
 /// </summary>
 public class DarbuotojasRepo : RepoBase
 {
-	public static List<Darbuotojas> List()
-	{
-		var query = $@"SELECT * FROM `{Config.TblPrefix}darbuotojai` ORDER BY tabelio_nr ASC";
-		var drc = Sql.Query(query);
+    public static List<Darbuotojas> List()
+    {
+        var query = $@"SELECT vardas, pavarde, asmens_kodas, el_pastas, tel_nr, pozicija, fk_elektronine_parduotuveid_elektronine_parduotuve
+                       FROM `{Config.TblPrefix}darbuotojas`
+                       ORDER BY asmens_kodas ASC";
+        var drc = Sql.Query(query);
 
-		var result = 
-			Sql.MapAll<Darbuotojas>(drc, (dre, t) => {
-				t.Tabelis = dre.From<string>("tabelio_nr");
-				t.Vardas = dre.From<string>("vardas");
-				t.Pavarde = dre.From<string>("pavarde");
-			});
+        var result =
+            Sql.MapAll<Darbuotojas>(drc, (dre, t) => {
+                t.Vardas = dre.From<string>("vardas");
+                t.Pavarde = dre.From<string>("pavarde");
+                t.AsmensKodas = dre.From<int>("asmens_kodas");
+                t.ElPastas = dre.From<string>("el_pastas");
+                t.TelNr = dre.From<string>("tel_nr");
+                t.Pozicija = dre.From<string>("pozicija");
+                t.FkElektronineParduotuveId = dre.From<int>("fk_elektronine_parduotuveid_elektronine_parduotuve");
+            });
 
-		return result;
-	}
+        return result;
+    }
 
-	public static Darbuotojas Find(string tabnr)
-	{
-		var query = $@"SELECT * FROM `{Config.TblPrefix}darbuotojai` WHERE tabelio_nr=?tab";
+    public static Darbuotojas Find(int asmensKodas)
+    {
+        var query = $@"SELECT vardas, pavarde, asmens_kodas, el_pastas, tel_nr, pozicija, fk_elektronine_parduotuveid_elektronine_parduotuve
+                       FROM `darbuotojas`
+                       WHERE asmens_kodas=?asmensKodas";
 
-		var drc = 
-			Sql.Query(query, args => {
-				args.Add("?tab", tabnr);
-			});
+        var drc = Sql.Query(query, args => {
+            args.Add("?asmensKodas", asmensKodas);
+        });
 
-		if( drc.Count > 0 )
-		{
-			var result = 
-				Sql.MapOne<Darbuotojas>(drc, (dre, t) => {
-					t.Tabelis = dre.From<string>("tabelio_nr");
-					t.Vardas = dre.From<string>("vardas");
-					t.Pavarde = dre.From<string>("pavarde");
-				});
-			
-			return result;
-		}
+        if (drc.Count > 0)
+        {
+            var result =
+                Sql.MapOne<Darbuotojas>(drc, (dre, t) => {
+                    t.Vardas = dre.From<string>("vardas");
+                    t.Pavarde = dre.From<string>("pavarde");
+                    t.AsmensKodas = dre.From<int>("asmens_kodas");
+                    t.ElPastas = dre.From<string>("el_pastas");
+                    t.TelNr = dre.From<string>("tel_nr");
+                    t.Pozicija = dre.From<string>("pozicija");
+                    t.FkElektronineParduotuveId = dre.From<int>("fk_elektronine_parduotuveid_elektronine_parduotuve");
+                });
 
-		return null;
-	}
+            return result;
+        }
 
-	public static void Update(Darbuotojas darb)
-	{						
-		var query = 
-			$@"UPDATE `{Config.TblPrefix}darbuotojai`
-			SET 
-				vardas=?vardas, 
-				pavarde=?pavarde 
-			WHERE 
-				tabelio_nr=?tab";
+        return null;
+    }
 
-		Sql.Update(query, args => {
-			args.Add("?vardas", darb.Vardas);
-			args.Add("?pavarde", darb.Pavarde);
-			args.Add("?tab", darb.Tabelis);
-		});				
-	}
+    public static void Update(Darbuotojas darb)
+    {
+        var query =
+            $@"UPDATE `{Config.TblPrefix}darbuotojas`
+               SET vardas=?vardas, pavarde=?pavarde, el_pastas=?elPastas, tel_nr=?telNr, pozicija=?pozicija, fk_elektronine_parduotuveid_elektronine_parduotuve=?fkElektronineParduotuveId
+               WHERE asmens_kodas=?asmensKodas";
 
-	public static void Insert(Darbuotojas darb)
-	{							
-		var query = 
-			$@"INSERT INTO `{Config.TblPrefix}darbuotojai`
-			(
-				tabelio_nr,
-				vardas,
-				pavarde
-			)
-			VALUES(
-				?tabelio_nr,
-				?vardas,
-				?pavarde
-			)";
+        Sql.Update(query, args => {
+            args.Add("?vardas", darb.Vardas);
+            args.Add("?pavarde", darb.Pavarde);
+            args.Add("?elPastas", darb.ElPastas);
+            args.Add("?telNr", darb.TelNr);
+            args.Add("?pozicija", darb.Pozicija);
+            args.Add("?fkElektronineParduotuveId", darb.FkElektronineParduotuveId);
+            args.Add("?asmensKodas", darb.AsmensKodas);
+        });
+    }
 
-		Sql.Insert(query, args => {
-			args.Add("?vardas", darb.Vardas);
-			args.Add("?pavarde", darb.Pavarde);
-			args.Add("?tabelio_nr", darb.Tabelis);
-		});				
-	}
+    public static void Insert(Darbuotojas darb)
+    {
+        var query =
+            $@"INSERT INTO `{Config.TblPrefix}darbuotojas`
+               (vardas, pavarde, asmens_kodas, el_pastas, tel_nr, pozicija, fk_elektronine_parduotuveid_elektronine_parduotuve)
+               VALUES (?vardas, ?pavarde, ?asmensKodas, ?elPastas, ?telNr, ?pozicija, ?fkElektronineParduotuveId)";
 
-	public static void Delete(string id)
-	{			
-		var query = $@"DELETE FROM `{Config.TblPrefix}darbuotojai` WHERE tabelio_nr=?id";
-		Sql.Delete(query, args => {
-			args.Add("?id", id);
-		});			
-	}
+        Sql.Insert(query, args => {
+            args.Add("?vardas", darb.Vardas);
+            args.Add("?pavarde", darb.Pavarde);
+            args.Add("?asmensKodas", darb.AsmensKodas);
+            args.Add("?elPastas", darb.ElPastas);
+            args.Add("?telNr", darb.TelNr);
+            args.Add("?pozicija", darb.Pozicija);
+            args.Add("?fkElektronineParduotuveId", darb.FkElektronineParduotuveId);
+        });
+    }
+
+    public static void Delete(int asmensKodas)
+    {
+        var query = $@"DELETE FROM `{Config.TblPrefix}darbuotojas` WHERE asmens_kodas=?asmensKodas";
+        Sql.Delete(query, args => {
+            args.Add("?asmensKodas", asmensKodas);
+        });
+    }
 }

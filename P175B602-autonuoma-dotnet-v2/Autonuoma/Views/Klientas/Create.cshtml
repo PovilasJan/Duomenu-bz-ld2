@@ -25,42 +25,48 @@
 	@Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
 	<fieldset>
-		<div class="form-group">
-			@Html.LabelFor(m => m.AsmensKodas)
-			@Html.EditorFor(m => m.AsmensKodas)
-			@Html.ValidationMessageFor(m => m.AsmensKodas, "")
-		</div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.AsmensKodas)
+                @Html.EditorFor(m => m.AsmensKodas, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(m => m.AsmensKodas, "", new { @class = "text-danger" })
+            </div>
 
-		<div class="form-group">
-			@Html.LabelFor(m => m.Vardas)
-			@Html.EditorFor(m => m.Vardas)
-			@Html.ValidationMessageFor(m => m.Vardas, "")
-		</div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Vardas)
+                @Html.EditorFor(m => m.Vardas, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(m => m.Vardas, "", new { @class = "text-danger" })
+            </div>
 
-		<div class="form-group">
-			@Html.LabelFor(m => m.Pavarde)
-			@Html.EditorFor(m => m.Pavarde)
-			@Html.ValidationMessageFor(m => m.Pavarde, "")
-		</div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Pavarde)
+                @Html.EditorFor(m => m.Pavarde, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(m => m.Pavarde, "", new { @class = "text-danger" })
+            </div>
 
-		<div class="form-group">
-			@Html.LabelFor(m => m.GimimoData)
-			@Html.TextBoxFor(m => m.GimimoData, "{0:yyyy-MM-dd}", new { @class = "form-control date-picker"})
-			@Html.ValidationMessageFor(m => m.GimimoData, "")
-		</div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Telefonas)
+                @Html.EditorFor(m => m.Telefonas, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(m => m.Telefonas, "", new { @class = "text-danger" })
+            </div>
 
-		<div class="form-group">
-			@Html.LabelFor(m => m.Telefonas)
-			@Html.EditorFor(m => m.Telefonas)
-			@Html.ValidationMessageFor(m => m.Telefonas, "")
-		</div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Epastas)
+                @Html.EditorFor(m => m.Epastas, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(m => m.Epastas, "", new { @class = "text-danger" })
+            </div>
 
-		<div class="form-group">
-			@Html.LabelFor(m => m.Epastas)
-			@Html.EditorFor(m => m.Epastas)
-			@Html.ValidationMessageFor(m => m.Epastas, "")
-		</div>
-	</fieldset>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Amzius)
+                @Html.EditorFor(m => m.Amzius, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(m => m.Amzius, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Adresas)
+                @Html.EditorFor(m => m.Adresas, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(m => m.Adresas, "", new { @class = "text-danger" })
+            </div>
+        </fieldset>
 
 	<div class="container-fluid d-flex d-row justify-content-end">
 		<button name="save" value="1" class="btn btn-success"><i class="fa-solid fa-floppy-disk"></i> Išsaugoti</button>

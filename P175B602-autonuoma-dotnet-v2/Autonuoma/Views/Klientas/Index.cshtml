@@ -25,15 +25,18 @@
 				<th>
 					@Html.DisplayNameFor(model => model.Pavarde)
 				</th>
-				<th>
-					@Html.DisplayNameFor(model => model.GimimoData)
-				</th>
+
 				<th>
 					@Html.DisplayNameFor(model => model.Telefonas)
 				</th>
 				<th>
 					@Html.DisplayNameFor(model => model.Epastas)
 				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.Amzius)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.Adresas)
 				<th></th>
 			</tr>
 		</thead>
@@ -50,13 +53,16 @@
 					@Html.DisplayFor(model => item.Pavarde)
 				</td>
 				<td>
-					@Html.DisplayFor(model => item.GimimoData)
-				</td>
-				<td>
 					@Html.DisplayFor(model => item.Telefonas)
 				</td>
 				<td>
 					@Html.DisplayFor(model => item.Epastas)
+				</td>
+				<td>
+					@Html.DisplayFor(model => item.Amzius)
+				</td>
+				<td>
+					@Html.DisplayFor(model => item.Adresas)
 				</td>
 				<td>
 					<a href="@Url.Action("Edit", new { id = item.AsmensKodas })" class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i> Redaguoti</a>
